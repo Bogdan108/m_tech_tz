@@ -52,7 +52,7 @@ class Pyramid:
         return can_transform
 
     # Обработка основоного алгоритма сжатия
-    def compress_triangles(self, inverse=False):
+    def compress_pyramid(self, inverse=False):
         if len(self.pyramid_str) > 1:
             pyramid_list = self.pyramid_transform(self.pyramid_str, inverse)
             triangle_list = self.triangle_transform(pyramid_list,)
@@ -63,7 +63,7 @@ class Pyramid:
                 for i in triangle_list:
                     new_pyramid_str += i[0]
                 self.pyramid_str = new_pyramid_str
-                return self.compress_triangles(True)
+                return self.compress_pyramid(True)
             else:
                 answer_str = ""
                 for i in pyramid_list:
@@ -81,7 +81,7 @@ with open('input/input1.txt', 'r') as input:
 
 pyramid_string = file_content
 pyramid = Pyramid(pyramid_string)
-answer = pyramid.compress_triangles()
+answer = pyramid.compress_pyramid()
 
 with open("output.txt", "w") as output:
     output.write(answer)
